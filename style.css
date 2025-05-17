@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background: #eaf1f8;
+  color: #1c2a4a;
+  padding: 20px;
+  text-align: center;
+}
+.hidden { display: none; }
+header {
+  margin-bottom: 30px;
+}
+.logo {
+  width: 120px;
+  margin: 0 auto 15px;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.logo:hover {
+  transform: scale(1.1);
+}
+h1, h2 {
+  color: #2E8BEF;
+}
+button, input[type=submit] {
+  background-color: #58CC02;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 15px auto;
+  display: inline-block;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+button:hover, input[type=submit]:hover {
+  background-color: #45a300;
+}
+input[type=text], input[type=password] {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin: 8px auto;
+  display: block;
+  width: 80%;
+  max-width: 300px;
+}
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+.error {
+  color: #e94b3c;
+  margin-top: 8px;
+}
+.btn-link {
+  background: none;
+  color: #2E8BEF;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+  margin-top: 12px;
+}
+.menu-btn {
+  width: 90%;
+  max-width: 300px;
+  margin: 10px auto;
+}
+#quiz-container, #courses-container, #profile-container {
+  max-width: 500px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: left;
+}
+#question {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #58CC02;
+}
+.answer-btn {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2E8BEF;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.answer-btn:hover {
+  background-color: #1a5acb;
+}
+.answer-btn.correct {
+  background-color: #58CC02;
+}
+.answer-btn.wrong {
+  background-color: #e94b3c;
+}
+#next-btn {
+  margin-top: 20px;
+  display: none;
+}
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #58CC02;
+  color: white;
+  font-size: 3rem;
+  line-height: 120px;
+  text-align: center;
+  margin: 0 auto 20px;
+  font-weight: 700;
+  user-select: none;
+}
+

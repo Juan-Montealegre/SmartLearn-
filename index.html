@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SmartLearn+ - App Educativa Completa</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+  body {
+    background: #eaf1f8;
+    color: #1c2a4a;
+    padding: 20px;
+    text-align: center;
+  }
+  header {
+    margin-bottom: 30px;
+  }
+  .logo {
+    width: 120px;
+    margin: 0 auto 15px;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+  }
+  .logo:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+  h1, h2 {
+    color: #2E8BEF;
+  }
+  button {
+    background-color: #58CC02;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 15px 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #45a300;
+  }
+  .btn-back {
+    background-color: #2E8BEF;
+  }
+  .btn-back:hover {
+    background-color: #1c56b2;
+  }
+  .hidden { display: none; }
+  input[type=text], input[type=password] {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin: 8px auto 20px;
+    display: block;
+    width: 80%;
+    max-width: 300px;
+  }
+  label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+    text-align: left;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .error {
+    color: #e94b3c;
+    margin-top: 8px;
+  }
+  .btn-link {
+    background: none;
+    color: #2E8BEF;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+  .menu-btn {
+    width: 90%;
+    max-width: 300px;
+    margin: 10px auto;
+  }
+  #quiz-container, #courses-container, #profile-container, #course-detail-section {
+    max-width: 700px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: left;
+  }
+  #question {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #58CC02;
+  }
+  .answer-btn {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background-color: #2E8BEF;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .answer-btn:hover {
+    background-color: #1a5acb;
+  }
+  .answer-btn.correct {
+    background-color: #58CC02;
+  }
+  .answer-btn.wrong {
+    background-color: #e94b3c;
+  }
+  #next-btn {
+    margin-top: 20px;
+    display: none;
+  }
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #58CC02;
+    color: white;
+    font-size: 3rem;
+    line-height: 120px;
+    text-align: center;
+    margin: 0 auto 20px;
+    font-weight: 700;
+    user-select: none;
+  }
+  /* Cursos - tarjetas con imagen divertida */
+  #courses-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .course-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .course-card:hover {
+    transform: translateY(-8px);
+  }
+  .course-img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-bottom: 3px solid #58CC02;
+  }
+  .course-info {
+    padding: 15px 20px;
+    flex-grow: 1;
+  }
+  .course-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2E8BEF;
+  }
+  .course-desc {
+    font-size: 1rem;
+    color: #555;
+  }
+  /* Detalle curso */
+  #course-detail-section img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="https://ai-images.s3.eu-central-1.wasabisys.com/30038242/631007/1aec1e16-c3be-4f06-abe5-41174ef90-08.png" alt="SmartLearn+ Logo" class="logo" />
+  <h1 id="page-title">SmartLearn+</h1>
+</header>
+
+<!-- LOGIN -->
+<section id="login-section">
+  <h2>Iniciar Sesión</h2>
+  <form id="login-form">
+    <label for="login-username">Usuario:</label>
+    <input type="text" id="login-username" required />
+    <label for="login-password">Contraseña:</label>
+    <input type="password" id="login-password" required />
+    <input type="submit" value="Entrar" />
+  </form>
+  <p>¿No tienes cuenta? <button class="btn-link" id="show-register">Regístrate aquí</button></p>
+  <p class="error" id="login-error"></p>
+</section>
+
+<!-- REGISTER -->
+<section id="register-section" class="hidden">
+  <h2>Registro de Usuario</h2>
+  <form id="register-form">
+    <label for="reg-username">Usuario:</label>
+    <input type="text" id="reg-username" required />
+    <label for="reg-password">Contraseña:</label>
+    <input type="password" id="reg-password" required />
+    <input type="submit" value="Registrar" />
+  </form>
+  <p>¿Ya tienes cuenta? <button class="btn-link" id="show-login">Inicia sesión aquí</button></p>
+  <p class="error" id="register-error"></p>
+</section>
+
+<!-- MAIN MENU -->
+<section id="main-menu" class="hidden">
+  <h2>¡Hola, <span id="user-name"></span>!</h2>
+  <button class="menu-btn" onclick="showSection('choose-level')">Realizar Quiz</button>
+  <button class="menu-btn" onclick="showSection('courses-container')">Explorar Cursos</button>
+  <button class="menu-btn" onclick="showSection('profile-container')">Ver Perfil</button>
+  <button class="menu-btn" onclick="logout()">Cerrar Sesión</button>
+</section>
+
+<!-- ELEGIR NIVEL PARA QUIZ -->
+<section id="choose-level" class="hidden">
+  <h2>Selecciona tu Nivel para el Quiz</h2>
+  <button class="menu-btn" onclick="startQuiz('basico')">Básico</button>
+  <button class="menu-btn" onclick="startQuiz('intermedio')">Intermedio</button>
+  <button class="menu-btn" onclick="startQuiz('avanzado')">Avanzado</button>
+  <button class="menu-btn" onclick="showSection('main-menu')">Volver</button>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz-container" class="hidden">
+  <h2>Quiz - <span id="quiz-level"></span></h2>
+  <div id="question"></div>
+  <div id="answer-buttons"></div>
+  <button id="next-btn">Siguiente</button>
+  <button class="menu-btn" onclick="showSection('main-menu')">Volver al Menú</button>
+</section>
+
+<!-- CURSOS -->
+<section id="courses-container" class="hidden">
+  <h2>Cursos Disponibles</h2>
+  <div id="courses-list">
+    <!-- Se llenará con JS -->
+  </div>
+  <button class="menu-btn" onclick="showSection('main-menu')">Volver al Menú</button>
+</section>
+
+<!-- DETALLE DEL CURSO -->
+<section id="course-detail-section" class="hidden">
+  <button class="btn btn-back" onclick="showSection('courses-container')">← Volver a Cursos</button>
+  <div id="course-detail">
+    <!-- Se llenará con JS -->
+  </div>
+</section>
+
+<!-- PERFIL -->
+<section id="profile-container" class="hidden">
+  <h2>Perfil de <span id="profile-user"></span></h2>
+  <div class="avatar" id="profile-avatar"></div>
+  <p><strong>Usuario:</strong> <span id="profile-username"></span></p>
+  <p><strong>Quizzes Completados:</strong> <span id="profile-quizzes">0</span></p>
+  <button class="menu-btn" onclick="showSection('main-menu')">Volver al Menú</button>
+</section>
+
+<script>
+  // Datos de usuarios en localStorage
+  let currentUser = null;
+
+  if (!localStorage.getItem('users')) {
+    localStorage.setItem('users', JSON.stringify({}));
+  }
+
+  const users = JSON.parse(localStorage.getItem('users'));
+
+  // Elementos DOM
+  const loginForm = document.getElementById('login-form');
+  const registerForm = document.getElementById('register-form');
+  const loginSection = document.getElementById('login-section');
+  const registerSection = document.getElementById('register-section');
+  const mainMenu = document.getElementById('main-menu');
+  const chooseLevel = document.getElementById('choose-level');
+  const quizContainer = document.getElementById('quiz-container');
+  const coursesContainer = document.getElementById('courses-container');
+  const profileContainer = document.getElementById('profile-container');
+  const courseDetailSection = document.getElementById('course-detail-section');
+
+  const loginError = document.getElementById('login-error');
+  const registerError = document.getElementById('register-error');
+
+  document.getElementById('show-register').addEventListener('click', () => {
+    loginSection.classList.add('hidden');
+    registerSection.classList.remove('hidden');
+    loginError.innerText = '';
+  });
+
+  document.getElementById('show-login').addEventListener('click', () => {
+    registerSection.classList.add('hidden');
+    loginSection.classList.remove('hidden');
+    registerError.innerText = '';
+  });
+
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    if(users[username] && users[username].password === password){
+      currentUser = username;
+      loginError.innerText = '';
+      enterApp();
+    } else {
+      loginError.innerText = 'Usuario o contraseña incorrectos.';
+    }
+  });
+
+  registerForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const username = document.getElementById('reg-username').value.trim();
+    const password = document.getElementById('reg-password').value;
+
+    if(users[username]){
+      registerError.innerText = 'El usuario ya existe.';
+    } else {
+      users[username] = {password, quizzesCompleted: 0};
+      localStorage.setItem('users', JSON.stringify(users));
+      currentUser = username;
+      registerError.innerText = '';
+      enterApp();
+    }
+  });
+
+  function enterApp(){
+    loginSection.classList.add('hidden');
+    registerSection.classList.add('hidden');
+    mainMenu.classList.remove('hidden');
+    updateUserDisplay();
+    showSection('main-menu');
+  }
+
+  function logout(){
+    currentUser = null;
+    mainMenu.classList.add('hidden');
+    showSection('login-section');
+  }
+
+  // Navegación entre secciones
+  function showSection(id){
+    [loginSection, registerSection, mainMenu, chooseLevel, quizContainer, coursesContainer, profileContainer, courseDetailSection].forEach(sec => sec.classList.add('hidden'));
+    const el = document.getElementById(id);
+    if(el) el.classList.remove('hidden');
+    if(id === 'quiz-container'){
+      nextButton.style.display = 'none';
+    }
+  }
+
+  // Actualiza datos perfil y saludo
+  function updateUserDisplay(){
+    document.getElementById('user-name').innerText = currentUser;
+    document.getElementById('profile-user').innerText = currentUser;
+    document.getElementById('profile-username').innerText = currentUser;
+    document.getElementById('profile-avatar').innerText = currentUser.substring(0,2).toUpperCase();
+
+    let completed = users[currentUser].quizzesCompleted || 0;
+    document.getElementById('profile-quizzes').innerText = completed;
+  }
+
+  // --- Quiz ---
+
+  const quizQuestions = {
+    basico: [
+      {
+        question: "¿Cuál es la capital de Francia?",
+        answers: [
+          {text: "Madrid", correct: false},
+          {text: "París", correct: true},
+          {text: "Roma", correct: false},
+          {text: "Berlín", correct: false},
+        ]
+      },
+      {
+        question: "¿Cuál es 2 + 2?",
+        answers: [
+          {text: "3", correct: false},
+          {text: "4", correct: true},
+          {text: "5", correct: false},
+          {text: "22", correct: false},
+        ]
+      }
+    ],
+    intermedio: [
+      {
+        question: "¿Quién escribió 'Don Quijote'?",
+        answers: [
+          {text: "Gabriel García Márquez", correct: false},
+          {text: "Miguel de Cervantes", correct: true},
+          {text: "Pablo Neruda", correct: false},
+          {text: "Octavio Paz", correct: false},
+        ]
+      },
+      {
+        question: "¿Cuál es la fórmula del agua?",
+        answers: [
+          {text: "CO2", correct: false},
+          {text: "H2O", correct: true},
+          {text: "O2", correct: false},
+          {text: "NaCl", correct: false},
+        ]
+      }
+    ],
+    avanzado: [
+      {
+        question: "¿Cuál es la derivada de sin(x)?",
+        answers: [
+          {text: "cos(x)", correct: true},
+          {text: "-cos(x)", correct: false},
+          {text: "sin(x)", correct: false},
+          {text: "-sin(x)", correct: false},
+        ]
+      },
+      {
+        question: "¿Quién propuso la teoría de la relatividad?",
+        answers: [
+          {text: "Isaac Newton", correct: false},
+          {text: "Albert Einstein", correct: true},
+          {text: "Nikola Tesla", correct: false},
+          {text: "Marie Curie", correct: false},
+        ]
+      }
+    ]
+  };
+
+  const questionElement = document.getElementById('question');
+  const answerButtons = document.getElementById('answer-buttons');
+  const nextButton = document.getElementById('next-btn');
+  let currentQuestions = [];
+  let currentQuestionIndex = 0;
+  let score = 0;
+  let currentQuizLevel = '';
+
+  function startQuiz(level){
+    currentQuizLevel = level;
+    currentQuestions = quizQuestions[level];
+    currentQuestionIndex = 0;
+    score = 0;
+    document.getElementById('quiz-level').innerText = capitalize(level);
+    showSection('quiz-container');
+    nextButton.style.display = 'none';
+    showQuestion();
+  }
+
+  function showQuestion(){
+    resetState();
+    let question = currentQuestions[currentQuestionIndex];
+    questionElement.innerText = `Pregunta ${currentQuestionIndex+1}: ${question.question}`;
+    question.answers.forEach(answer => {
+      const button = document.createElement('button');
+      button.innerText = answer.text;
+      button.classList.add('answer-btn');
+      if(answer.correct) button.dataset.correct = answer.correct;
+      button.addEventListener('click', selectAnswer);
+      answerButtons.appendChild(button);
+    });
+  }
+
+  function resetState(){
+    nextButton.style.display = 'none';
+    while(answerButtons.firstChild){
+      answerButtons.removeChild(answerButtons.firstChild);
+    }
+  }
+
+  function selectAnswer(e){
+    const selected = e.target;
+    const correct = selected.dataset.correct === 'true';
+
+    if(correct){
+      selected.classList.add('correct');
+      score++;
+    } else {
+      selected.classList.add('wrong');
+    }
+
+    Array.from(answerButtons.children).forEach(button => {
+      button.disabled = true;
+      if(button.dataset.correct === 'true') button.classList.add('correct');
+    });
+
+    nextButton.style.display = 'inline-block';
+  }
+
+  nextButton.addEventListener('click', () => {
+    currentQuestionIndex++;
+    if(currentQuestionIndex < currentQuestions.length){
+      showQuestion();
+    } else {
+      showScore();
+    }
+  });
+
+  function showScore(){
+    resetState();
+    questionElement.innerText = `Has completado el quiz. Puntuación: ${score} / ${currentQuestions.length}`;
+    nextButton.innerText = 'Reiniciar Quiz';
+    nextButton.style.display = 'inline-block';
+    nextButton.onclick = () => {
+      nextButton.innerText = 'Siguiente';
+      startQuiz(currentQuizLevel);
+    };
+    users[currentUser].quizzesCompleted = (users[currentUser].quizzesCompleted || 0) + 1;
+    localStorage.setItem('users', JSON.stringify(users));
+    updateUserDisplay();
+  }
+
+  function capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  // --- Cursos con imágenes divertidas y navegación dentro de SPA ---
+  const courses = [
+    {
+      id: 'ingles-basico',
+      title: 'Inglés Básico',
+      shortDesc: 'Aprende vocabulario y frases esenciales para comunicarte.',
+      detailDesc: `Este curso cubre los conceptos fundamentales de gramática, pronunciación y vocabulario básico.
+        Ideal para principiantes que quieren comenzar a hablar inglés. Incluye videos, ejercicios interactivos y juegos.`,
+      image: 'https://cdn-icons-png.flaticon.com/512/3048/3048121.png',
+      level: 'Básico'
+    },
+    {
+      id: 'matematicas-divertidas',
+      title: 'Matemáticas Divertidas',
+      shortDesc: 'Resuelve retos lógicos y matemáticos paso a paso.',
+      detailDesc: `Explora conceptos básicos de matemáticas a través de juegos y ejercicios interactivos que hacen el aprendizaje entretenido.
+        Ideal para estudiantes que quieren mejorar sus habilidades con lógica y números.`,
+      image: 'https://cdn-icons-png.flaticon.com/512/1995/1995574.png',
+      level: 'Básico'
+    },
+    {
+      id: 'historia-universal',
+      title: 'Historia Universal',
+      shortDesc: 'Descubre los eventos más importantes que cambiaron el mundo.',
+      detailDesc: `Un repaso por la historia mundial con enfoque en eventos, personajes y procesos que dieron forma al mundo moderno.
+        Perfecto para estudiantes de nivel intermedio interesados en comprender nuestro pasado.`,
+      image: 'https://cdn-icons-png.flaticon.com/512/1591/1591885.png',
+      level: 'Intermedio'
+    }
+  ];
+
+  const coursesListEl = document.getElementById('courses-list');
+  const courseDetailEl = document.getElementById('course-detail');
+
+  function renderCourses() {
+    coursesListEl.innerHTML = '';
+    courses.forEach(course => {
+      const card = document.createElement('div');
+      card.className = 'course-card';
+      card.innerHTML = `
+        <img src="${course.image}" alt="${course.title}" class="course-img" />
+        <div class="course-info">
+          <div class="course-title">${course.title}</div>
+          <div class="course-desc">${course.shortDesc}</div>
+          <div><strong>Nivel:</strong> ${course.level}</div>
+        </div>
+      `;
+      card.addEventListener('click', () => showCourseDetail(course.id));
+      coursesListEl.appendChild(card);
+    });
+  }
+
+  function showCourseDetail(id) {
+    const course = courses.find(c => c.id === id);
+    if(!course) return;
+
+    courseDetailEl.innerHTML = `
+      <h2>${course.title} <small style="color:#58CC02; font-weight:600;">(${course.level})</small></h2>
+      <img src="${course.image}" alt="${course.title}" />
+      <p>${course.detailDesc}</p>
+    `;
+
+    showSection('course-detail-section');
+    window.scrollTo({top:0, behavior: 'smooth'});
+  }
+
+  // Iniciar app o login
+  if(currentUser){
+    enterApp();
+  } else {
+    showSection('login-section');
+  }
+
+  // Cuando se muestra cursos, recarga lista
+  document.getElementById('courses-container').addEventListener('transitionstart', renderCourses);
+
+</script>
+
+</body>
+</html>
+
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
